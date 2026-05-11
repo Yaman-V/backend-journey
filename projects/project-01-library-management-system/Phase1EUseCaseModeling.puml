@@ -1,0 +1,148 @@
+@startuml LMS_UseCaseDiagram
+
+title Library Management System — Use Case Diagram
+
+left to right direction
+!pragma layout smetana
+
+skinparam shadowing false
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam roundcorner 12
+skinparam defaultFontName Arial
+
+skinparam usecase {
+  BackgroundColor #EAF3FF
+  BorderColor #185FA5
+  FontSize 13
+}
+
+skinparam actor {
+  BackgroundColor #E1F5EE
+  BorderColor #0F6E56
+  FontSize 13
+}
+
+skinparam package {
+  BackgroundColor white
+  BorderColor #666666
+}
+
+' ── Actors ────────────────────────────────────────────────
+actor "Library User" as LU
+actor "Patron" as P
+actor "Staff" as S
+actor "Admin" as A
+actor "System\n(Scheduler)" as SYS
+
+P --|> LU
+S --|> LU
+
+' ── System Boundary ───────────────────────────────────────
+rectangle "Library Management System" as LMS {
+
+  rectangle "Patron Features" as PF {
+    usecase "UC-01: Search Catalog"           as UC01
+    usecase "UC-05: Manage Reservation"       as UC05
+    usecase "UC-03: Return BookCopy"          as UC03
+    usecase "UC-04: Renew Loan"               as UC04
+    usecase "UC-02: Borrow BookCopy"          as UC02
+    usecase "UC-06: View Account Information" as UC06
+  }
+
+  rectangle "Staff Features" as SF {
+    usecase "UC-07: Add Book to Catalog"       as UC07
+    usecase "UC-08: Edit Book Information"     as UC08
+    usecase "UC-09: Update BookCopy Condition" as UC09
+    usecase "UC-10: Remove BookCopy"           as UC10
+    usecase "UC-11: Register Patron Account"   as UC11
+    usecase "UC-12: Search Patron Accounts"    as UC12
+  }
+
+  rectangle "Admin Features" as AF {
+    usecase "UC-15: Adjust Fine"               as UC15
+    usecase "UC-16: Configure System Policies"  as UC16
+    usecase "UC-17: View Audit Log"            as UC17
+    usecase "UC-18: Generate Reports"           as UC18
+    usecase "UC-13: Manage Staff Accounts"      as UC13
+    usecase "UC-14: Override Loan State"        as UC14
+  }
+
+  rectangle "System Sub-Behaviors" as SB {
+    usecase "Update Loan State"                 as ULS
+    usecase "Update BookCopy Availability"      as UBA
+    usecase "Calculate and Record Fine"         as CRF
+    usecase "Send Notification"                 as SN
+    usecase "Send Due Date Reminder"            as SDDR
+  }
+
+  ' ── Hidden links to improve layout ─────────────────────
+  UC01 -[hidden]-> UC05
+  UC05 -[hidden]-> UC03
+  UC03 -[hidden]-> UC04
+  UC04 -[hidden]-> UC02
+  UC02 -[hidden]-> UC06
+
+  UC07 -[hidden]-> UC08
+  UC08 -[hidden]-> UC09
+  UC09 -[hidden]-> UC10
+  UC10 -[hidden]-> UC11
+  UC11 -[hidden]-> UC12
+
+  UC15 -[hidden]-> UC16
+  UC16 -[hidden]-> UC17
+  UC17 -[hidden]-> UC18
+  UC18 -[hidden]-> UC13
+  UC13 -[hidden]-> UC14
+
+  ULS -[hidden]-> UBA
+  UBA -[hidden]-> CRF
+  CRF -[hidden]-> SN
+  SN -[hidden]-> SDDR
+}
+
+' ── Associations ─────────────────────────────────────────
+LU --> UC01
+LU --> UC02
+LU --> UC03
+LU --> UC04
+LU --> UC05
+LU --> UC06
+
+S --> UC02
+S --> UC03
+S --> UC04
+S --> UC06
+S --> UC07
+S --> UC08
+S --> UC09
+S --> UC10
+S --> UC11
+S --> UC12
+
+A --> UC13
+A --> UC14
+A --> UC15
+A --> UC16
+A --> UC17
+A --> UC18
+
+SYS --> SDDR
+
+' ── Include relationships ────────────────────────────────
+UC02 .> ULS : <<include>>
+UC03 .> ULS : <<include>>
+UC04 .> ULS : <<include>>
+
+UC02 .> UBA : <<include>>
+UC03 .> UBA : <<include>>
+UC05 .> UBA : <<include>>
+
+' ── Extend relationships ─────────────────────────────────
+CRF  .> UC03 : <<extend>>
+SN   .> UC03 : <<extend>>
+SN   .> UC04 : <<extend>>
+SN   .> UC05 : <<extend>>
+SDDR .> UC02 : <<extend>>
+
+@enduml
