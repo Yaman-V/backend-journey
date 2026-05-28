@@ -21,10 +21,6 @@ public class TaskService {
         return tasksList;
     }
 
-    public Task addTask(Task task){
-        tasksList.add(task);
-        return task;
-    }
     public List<Task> getTaskByTitle(String title){
         List<Task> list = new ArrayList<>();
         for(Task task : tasksList){
@@ -33,5 +29,12 @@ public class TaskService {
             }
         }
         return list;
+    }
+    public Task addTask(Task task){
+        tasksList.add(task);
+        return task;
+    }
+    public boolean deleteTask(String title){
+        return  tasksList.removeIf(task -> title.equalsIgnoreCase(task.getTitle()));
     }
 }

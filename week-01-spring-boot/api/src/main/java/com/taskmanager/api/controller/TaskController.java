@@ -4,7 +4,6 @@ import com.taskmanager.api.model.Task;
 import com.taskmanager.api.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -35,5 +34,9 @@ public class TaskController {
     @PostMapping("/tasks")
     public Task addTask(@RequestBody Task task){
         return taskService.addTask(task);
+    }
+    @DeleteMapping("/tasks/{title}")
+    public boolean deleteTask(@PathVariable String title){
+        return taskService.deleteTask(title);
     }
 }
