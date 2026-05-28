@@ -25,4 +25,13 @@ public class TaskService {
         tasksList.add(task);
         return task;
     }
+    public List<Task> getTaskByTitle(String title){
+        List<Task> list = new ArrayList<>();
+        for(Task task : tasksList){
+            if (title.equalsIgnoreCase( task.getTitle()) ){
+                list.add(task);
+            }
+        }
+        return list;
+    }
 }
