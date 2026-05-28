@@ -20,4 +20,9 @@ public class TaskService {
     public List<Task> getAllTask(){
         return tasksList;
     }
+
+    public Task addTask(Task task){
+        tasksList.add(task);
+        return task;
+    }
 }

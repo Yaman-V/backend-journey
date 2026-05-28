@@ -2,8 +2,8 @@ package com.taskmanager.api.controller;
 
 import com.taskmanager.api.model.Task;
 import com.taskmanager.api.service.TaskService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -22,5 +22,9 @@ public class TaskController {
     public List<Task> getAllTasks() {
         // 3. Now we use the injected instance, NO 'new' keyword!
         return taskService.getAllTask();
+    }
+    @PostMapping("/tasks")
+    public Task addTask(@RequestBody Task task){
+        return taskService.addTask(task);
     }
 }
