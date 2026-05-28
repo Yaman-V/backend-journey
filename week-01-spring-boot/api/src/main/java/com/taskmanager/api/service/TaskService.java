@@ -8,33 +8,33 @@ import java.util.List;
 
 @Service
 public class TaskService {
-    private List<Task> tasksList = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
     public TaskService() {
-        tasksList.add(new Task( "Master Spring Boot-1", "Learn annotations and MVC architecture", Task.Status.DONE));
-        tasksList.add(new Task( "Master Spring Boot-2", "Learn annotations and MVC architecture", Task.Status.IN_PROGRESS));
-        tasksList.add(new Task( "Review", "Review what I have learned", Task.Status.TODO));
-        tasksList.add(new Task( "Submit", "Send the project to friends", Task.Status.SUSPENDED));
+        tasks.add(new Task( "Master Spring Boot-1", "Learn annotations and MVC architecture", Task.Status.DONE));
+        tasks.add(new Task( "Master Spring Boot-2", "Learn annotations and MVC architecture", Task.Status.IN_PROGRESS));
+        tasks.add(new Task( "Review", "Review what I have learned", Task.Status.TODO));
+        tasks.add(new Task( "Submit", "Send the project to friends", Task.Status.SUSPENDED));
     }
 
-    public List<Task> getAllTask(){
-        return tasksList;
+    public List<Task> getAllTasks(){
+        return tasks;
     }
 
     public List<Task> getTaskByTitle(String title){
-        List<Task> list = new ArrayList<>();
-        for(Task task : tasksList){
+        List<Task> matchingTasks = new ArrayList<>();
+        for(Task task : tasks){
             if (title.equalsIgnoreCase( task.getTitle()) ){
-                list.add(task);
+                matchingTasks.add(task);
             }
         }
-        return list;
+        return matchingTasks;
     }
     public Task addTask(Task task){
-        tasksList.add(task);
+        tasks.add(task);
         return task;
     }
     public boolean deleteTask(String title){
-        return  tasksList.removeIf(task -> title.equalsIgnoreCase(task.getTitle()));
+        return  tasks.removeIf(task -> title.equalsIgnoreCase(task.getTitle()));
     }
 }

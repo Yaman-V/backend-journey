@@ -21,15 +21,15 @@ public class TaskController {
     @GetMapping("/tasks")
     public List<Task> getAllTasks() {
         // 3. Now we use the injected instance, NO 'new' keyword!
-        return taskService.getAllTask();
+        return taskService.getAllTasks();
     }
     @GetMapping("tasks/{title}")
     public List<Task> getTaskByTitle(@PathVariable String title){
-        List<Task> list = taskService.getTaskByTitle(title);
-        if(list.isEmpty()){
+        List<Task> matchingTasks = taskService.getTaskByTitle(title);
+        if(matchingTasks.isEmpty()){
             return null;
         }
-        return list;
+        return matchingTasks;
     }
     @PostMapping("/tasks")
     public Task addTask(@RequestBody Task task){
