@@ -17,11 +17,11 @@ public class Task {
     private String description;
     private Status status;
 
-    public Task(UUID id, String title, String description, Status status) {
-        this.id = Objects.requireNonNull(id, "id must not be null");
+    public Task( String title, String description , Status status) {
+        this.id = Objects.requireNonNull(UUID.randomUUID(), "id must not be null");
         this.title = Objects.requireNonNull(title, "title must not be null");
-        this.description = description;
-        this.status = Objects.requireNonNull(status, "status must not be null");
+        this.description = (description != null)? description : "";
+        this.status = (status != null)? status : Status.TODO;
     }
 
     public UUID getId() {
