@@ -25,11 +25,7 @@ public class TaskController {
     }
     @GetMapping("tasks/{title}")
     public List<Task> getTaskByTitle(@PathVariable String title){
-        List<Task> matchingTasks = taskService.getTaskByTitle(title);
-        if(matchingTasks.isEmpty()){
-            return null;
-        }
-        return matchingTasks;
+        return taskService.getTaskByTitle(title);
     }
     @PostMapping("/tasks")
     public Task addTask(@RequestBody Task task){
