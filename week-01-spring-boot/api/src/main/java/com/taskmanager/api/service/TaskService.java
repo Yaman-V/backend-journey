@@ -31,6 +31,17 @@ public class TaskService {
         tasks.add(task);
         return task;
     }
+    public Optional<Task> updateTask(Long id , Task updatedTask) {
+        for (Task task : tasks) {
+            if (task.getId().equals(id)) {
+                task.setTitle(updatedTask.getTitle());
+                task.setDescription(updatedTask.getDescription());
+                task.setStatus(updatedTask.getStatus());
+                return Optional.of(task);
+            }
+        }
+        return Optional.empty();
+    }
     public boolean deleteTask(Long id){
         return  tasks.removeIf(task -> task.getId().equals(id));
     }

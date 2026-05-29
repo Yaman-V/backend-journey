@@ -24,7 +24,7 @@ public class TaskController {
         // 3. Now we use the injected instance, NO 'new' keyword!
         return taskService.getAllTasks();
     }
-    @GetMapping("tasks/{id}")
+    @GetMapping("/tasks/{id}")
     public Optional<Task> getTaskByID(@PathVariable Long id){
         return taskService.getTaskByID(id);
     }
@@ -32,6 +32,9 @@ public class TaskController {
     public Task addTask(@RequestBody Task task){
         return taskService.addTask(task);
     }
+
+    @PutMapping("/tasks/{id}")
+    public Optional<Task>  updateTask(@PathVariable Long id ,@RequestBody Task updatedTask){return taskService.updateTask(id , updatedTask);}
 
     @DeleteMapping("/tasks/{id}")
     public boolean deleteTask(@PathVariable Long id){
