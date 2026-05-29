@@ -1,7 +1,6 @@
 package com.taskmanager.api.model;
 
 import java.util.Objects;
-import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class Task {

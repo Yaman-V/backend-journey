@@ -27,10 +27,12 @@ public class TaskService {
                 .filter(task -> task.getId().equals(id))
                 .findFirst();
     }
+
     public Task addTask(Task task){
         tasks.add(task);
         return task;
     }
+
     public Optional<Task> updateTask(Long id , Task updatedTask) {
         for (Task task : tasks) {
             if (task.getId().equals(id)) {
@@ -42,6 +44,7 @@ public class TaskService {
         }
         return Optional.empty();
     }
+
     public boolean deleteTask(Long id){
         return  tasks.removeIf(task -> task.getId().equals(id));
     }
