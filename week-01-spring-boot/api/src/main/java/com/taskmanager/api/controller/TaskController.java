@@ -5,6 +5,7 @@ import com.taskmanager.api.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class TaskController {
@@ -23,16 +24,17 @@ public class TaskController {
         // 3. Now we use the injected instance, NO 'new' keyword!
         return taskService.getAllTasks();
     }
-    @GetMapping("tasks/{title}")
-    public List<Task> getTaskByTitle(@PathVariable String title){
-        return taskService.getTaskByTitle(title);
+    @GetMapping("tasks/{id}")
+    public Optional<Task> getTaskByID(@PathVariable Long id){
+        return taskService.getTaskByID(id);
     }
     @PostMapping("/tasks")
     public Task addTask(@RequestBody Task task){
         return taskService.addTask(task);
     }
-    @DeleteMapping("/tasks/{title}")
-    public boolean deleteTask(@PathVariable String title){
-        return taskService.deleteTask(title);
+
+    @DeleteMapping("/tasks/{id}")
+    public boolean deleteTask(@PathVariable Long id){
+        return taskService.deleteTask(id);
     }
 }

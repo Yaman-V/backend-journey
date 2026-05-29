@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -21,20 +22,16 @@ public class TaskService {
         return tasks;
     }
 
-    public List<Task> getTaskByTitle(String title){
-        List<Task> matchingTasks = new ArrayList<>();
-        for(Task task : tasks){
-            if (title.equalsIgnoreCase( task.getTitle()) ){
-                matchingTasks.add(task);
-            }
-        }
-        return matchingTasks;
+    public Optional<Task> getTaskByID(Long id) {
+        return tasks.stream()
+                .filter(task -> task.getId().equals(id))
+                .findFirst();
     }
     public Task addTask(Task task){
         tasks.add(task);
         return task;
     }
-    public boolean deleteTask(String title){
-        return  tasks.removeIf(task -> title.equalsIgnoreCase(task.getTitle()));
+    public boolean deleteTask(Long id){
+        return  tasks.removeIf(task -> task.getId().equals(id));
     }
 }
