@@ -18,14 +18,15 @@ Get in touch with the frameworks, build a foundation, and plan for a real start.
 ##  Checklist 
 
 ### Java-audit
--  Download the IntelliJ IDEA
+-  Download IntelliJ IDEA
 -  Review OOP 
 -  Design Patterns 
 
 ### Mini-projects: Parallel_sum
+> Moved to a standalone repo: https://github.com/Yaman-V/Parallel_Sum
 -  OS 101
 -  CPU architecture.
--  multi-processing in C++
+-  Multi-processing in C++
 
 ### Projects: Library management system 
 -  Phase 01: Requirements.
