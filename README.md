@@ -7,8 +7,8 @@ A structured personal repository documenting my progress through backend enginee
 ---
 
 ## Table of Contents
-* [Week 00 — Foundation & Planning](#week-00--foundation--planning)
-* [Week 01 — Spring Boot Fundamentals & REST APIs](#week-01--spring-boot-fundamentals--rest-apis)
+* [Week 00 — Foundation & Planning](#https://github.com/Yaman-V/backend-journey/tree/main#week-00---foundation--planning)
+* [Week 01 — Spring Boot Fundamentals & REST APIs](#https://github.com/Yaman-V/backend-journey/tree/main#week-01--spring-boot-fundamentals--rest-apis)
 
 ---
 
