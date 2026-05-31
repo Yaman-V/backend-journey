@@ -1,51 +1,67 @@
-# backend-journey
-* Structured personal repository documenting progress through backend engineering concepts in Java.
-* Covers core topics including REST API design, Spring Boot fundamentals, database integration, and clean code principles.
-* Actively maintained as a learning log and reference for applied backend development.
+# Backend Journey
+A structured personal repository documenting my progress through backend engineering concepts in Java. This log covers core topics including REST API design, Spring Boot fundamentals, database integration, and clean software architecture.
 
-----
-# Log: 
-
-# Week 00 — Foundation
+**Primary Stack:** Java, Spring Boot, PostgreSQL, Docker
+**Goal:** Develop production-grade backend systems and master enterprise-level architecture.
 
 ---
 
-##  Goal
-Get in touch with the frameworks, build a foundation, and plan for a real start.  
+## Table of Contents
+* [Week 00 — Foundation & Planning](#week-00--foundation--planning)
+* [Week 01 — Spring Boot Fundamentals & REST APIs](#week-01--spring-boot-fundamentals--rest-apis)
 
 ---
 
-##  Checklist 
+## Week 00 - Foundation & Planning
 
-### Java-audit
--  Download IntelliJ IDEA
--  Review OOP 
--  Design Patterns 
+### Goal
+Establish the development environment, review core computer science fundamentals, and plan the roadmap for the backend journey.
 
-### Mini-projects: Parallel_sum
-> Moved to a standalone repo: https://github.com/Yaman-V/Parallel_Sum
--  OS 101
--  CPU architecture.
--  Multi-processing in C++
+### Execution
+**Infrastructure & Tools**
+* Configured IntelliJ IDEA Ultimate and JDK environment.
 
-### Projects: Library management system 
--  Phase 01: Requirements.
--  🛑 Not finished, suspended for now.
-   
+**Theory & Review**
+* Audited core Object-Oriented Programming (OOP) concepts.
+* Reviewed structural and behavioral Design Patterns.
+* Studied OS 101 and CPU architecture.
+
+**Projects**
+* **Parallel_Sum:** Implemented multi-processing in C++. *(Moved to standalone repo: [Parallel_Sum](https://github.com/Yaman-V/Parallel_Sum))*
+* **Library Management System:** Drafted Phase 01 Requirements. *(Status: Suspended to prioritize Spring Boot ecosystem).*
+
+### Reflection
+* **What went well:** Testing different workflows and establishing a baseline for my schedule.
+* **Challenges:** Adapting to new university policies and calendar shifts which interrupted initial project timelines.
+* **Gaps Identified:** Need to deepen understanding of the Java Collections Framework.
+* **Takeaway:** This week served its purpose—clearing the runway, identifying what works for my schedule, and building momentum for the actual framework implementation next week.
+
 ---
 
-##  Resources Used
+## Week 01 - Spring Boot Fundamentals & REST APIs
 
----
+### Goal
+Transition from core Java to enterprise web development by initializing a Spring Boot application and building a fully functional, in-memory REST API.
 
-##  Reflection
+### Execution
+**Projects**
+* **Task Manager API (Phase 1):** Built the Controller and Service layers for a complete CRUD (Create, Read, Update, Delete) application. 
+* *(Note: This flagship project is maintained in a dedicated portfolio repository: https://github.com/Yaman-V/task-manager-api)*
 
-**What went well:**  Testing what works and what doesn't. 
+**Theory & Implementation**
+* Initialized the project via Spring Initializr (`pom.xml`, Maven, Spring Web).
+* Implemented a layered MVC architecture (Model, Service, Controller).
+* Enforced the Single Responsibility Principle by decoupling web routing from data management.
+* Replaced standard UUIDs with a thread-safe `AtomicLong` for ID generation to mimic relational database sequencing.
 
-**What was hard:**  New university policies were not studied, and the new calendar messed up my projects. 
+### Concepts Mastered
+* **Inversion of Control (IoC) & Dependency Injection (DI):** Moving away from the `new` keyword and utilizing Constructor Injection to manage Spring Beans.
+* **Spring Web Annotations:** `@RestController`, `@Service`, `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping`.
+* **Data Mapping:** Using `@PathVariable` and `@RequestBody` to handle incoming JSON payloads via Jackson.
+* **HTTP Status Control:** Wrapping standard POJOs in `ResponseEntity<T>` to accurately return `200 OK`, `201 Created`, `204 No Content`, and `404 Not Found`.
+* **Safe Null Handling:** Utilizing `java.util.Optional` in the Service layer to prevent `NullPointerExceptions` when fetching data.
 
-**Gaps identified:** Collection in Java
-
-**Hours spent:**  IDK 
-
-**Thoughts:** This is 00, so the goal  was testing to see what works with my day and what does not, and build momentum for what comes next. 
+### Reflection
+* **What went well:** Core Java knowledge (like standardizing Enums for status states and writing custom Lambda expressions for list filtering) translated perfectly into the Spring ecosystem.
+* **Challenges:** Understanding how the Jackson JSON parser implicitly relies on default empty constructors to deserialize payloads.
+* **Takeaway:** Frameworks can feel like "magic," but they are just Java under the hood. Forcing the data logic out of the controller and into a dedicated Singleton Service completely changed how I view application state and memory management.
